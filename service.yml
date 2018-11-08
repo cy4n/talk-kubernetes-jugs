@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: jug-service
+spec:
+  selector:
+    app: jug
+  type: ClusterIP
+  ports:
+  - port: 8080

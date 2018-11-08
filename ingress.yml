@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jug-ingress
+spec:
+  rules:
+  - host: jug.minikube.local
+    http:
+      paths:
+      - backend:
+          serviceName: jug-service
+          servicePort: 8080
+        path: /

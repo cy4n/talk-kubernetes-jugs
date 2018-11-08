@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jug
+spec:
+  containers:
+  - name: hello
+    image: cy4n/hello:0.0.4
+    ports:
+    - containerPort: 8080

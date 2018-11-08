@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jug
+  labels:
+    app: jug
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jug
+  template:
+    metadata:
+      labels:
+        app: jug
+    spec:
+      containers:
+      - name: hello
+        image: cy4n/hello:0.0.5
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 20
+        volumeMounts:
+        - name: applicationyaml
+          mountPath: /app/config
+          readOnly: true
+      volumes:
+      - name: applicationyaml
+        configMap:
+          name: applicationyaml
